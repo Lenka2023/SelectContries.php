@@ -48,95 +48,109 @@
 		$country1=$result3[1];
 		$countryres0=$country0["Name_country"];
 		$countryres1=$country1["Name_country"];
+		
+		
+		
 				?>
  <form action="Countries.php" method="post">
  
-		<select name="country" id="menu1" >
-			  <option value="<?php echo htmlspecialchars($countryres0);?>"><?php echo $countryres0;?></option>
-			  <option value="<?php echo htmlspecialchars($countryres1);?>"><?php echo $countryres1;?></option>
+ <select name="country" id="menu1" onchange="changeRegion()">
+  <option  value="<?php echo htmlspecialchars($countryres0);?>"><?php echo $countryres0;?></option>
+  <option  value="<?php echo htmlspecialchars($countryres1);?>"><?php echo $countryres1;?></option>
   
-		</select></p>
-		<select name="region" id="menu2">
-			  <option class="region" value="" text=""></option>
-			  <option class="region" value=""></option>
+</select></p>
+<select name="region" id="menu2" onchange="changeCity()">
+  <option  class="region" value="" text=""></option>
+  <option  class="region" value=""></option>
   
-		</select></p>
-		<select name="city" id="menu3">
-			  <option class="city" value=""></option>
-			  <option class="city" value=""></option>
-			  <option class="city" value=""></option>
-		</select></p>
+</select></p>
+<select name="city" id="menu3">
+  <option class="city" value=""></option>
+  <option class="city" value=""></option>
+  <option class="city" value=""></option>
+</select></p>
    <p><input type="submit" value="Отправить"></p>
   </form>
    <table border="1" width="100%" cellpadding="5">
-	   <tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-	   </tr>
-	   <tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-	   </tr>
-	   <tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-	   </tr>
-	   <tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-	   </tr>
-	   <tr>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-		<th></th>
-	  </tr>
+   <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+   </tr>
+   <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+   </tr>
+   <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+   </tr>
+   <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+   </tr>
+   <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
  </table>
  <?php
  
- if(!empty($_POST['country'])){
-	 
-	 print_r((string)$_POST['country']);}
-if(isset($_POST['country'])&&!empty($_POST['country'])&&($_POST['country']=="Ukraine")){
+ if(!empty($_POST['country'])){print_r((string)$_POST['country']);}
 
-	echo "<script> document.getElementsByClassName('region')[0].value='$rehion0';
-					document.getElementsByClassName('region')[1].value='$rehion1';
-					document.getElementsByClassName('region')[0].text=' $rehion0';
-					document.getElementsByClassName('region')[1].text=' $rehion1';
-</script>";
-									
-			
-}
 if(!empty($_POST['region'])){print_r($_POST['region']);}
-if(isset($_POST['region'])&&!empty($_POST['region'])&&($_POST['region']=="Kyivska")){
-echo "<script> document.getElementsByClassName('city')[0].value='$town0';
-				document.getElementsByClassName('city')[1].value=' $town1';
-				document.getElementsByClassName('city')[2].value=' $town2';
-				document.getElementsByClassName('city')[0].text=' $town0';
-				document.getElementsByClassName('city')[1].text=' $town1';
-				document.getElementsByClassName('city')[2].text=' $town2';
-</script>";
-				
-}
+
 if(!empty($_POST['city'])){print_r($_POST['city']);}
 
-
-
 ?>
-		  
+
+		  <script  type="text/javascript">
+		 
+function changeRegion(){		 
+var select = document.querySelector('#menu1').getElementsByTagName('option');
+  for (var i = 0; i < select.length; i++) {
+			if ((select[i].value === 'Ukraine')&&(select[i].selected == true)){
+			 document.getElementsByClassName('region')[0].value="<?php echo htmlspecialchars($rehion0);?>";
+			 document.getElementsByClassName('region')[1].value="<?php echo htmlspecialchars($rehion1);?>";
+			 document.getElementsByClassName('region')[0].text="<?php echo $rehion0;?>";
+			 document.getElementsByClassName('region')[1].text="<?php echo $rehion1;?>";
+																			} else if((select[i].value === 'Russia')&&(select[i].selected == true)){
+																				var selRuss="Russia is selected";
+																					console.log(selRuss);
+																																					}
+						}
+}
+function changeCity(){
+	var selectreg = document.querySelector('#menu2').getElementsByTagName('option');
+			for (var i = 0; i < selectreg.length; i++) {
+				if ((selectreg[i].value === 'Kyivska')&& (selectreg[i].selected == true)){										
+					document.getElementsByClassName('city')[0].value="<?php echo htmlspecialchars($town0);?>";
+					document.getElementsByClassName('city')[1].value="<?php echo htmlspecialchars($town1);?>";
+					document.getElementsByClassName('city')[2].value="<?php echo htmlspecialchars($town2);?>";
+					document.getElementsByClassName('city')[0].text="<?php echo $town0;?>";
+					document.getElementsByClassName('city')[1].text="<?php echo $town1;?>";
+					document.getElementsByClassName('city')[2].text="<?php echo $town2;?>";
+																						}else if((selectreg[i].value === 'Donetska')&&(selectreg[i].selected == true)){
+																						var selDon="Donetska is selected";
+																					console.log(selDon);	
+																						}
+														}
+						}
+			</script> 
 		
   
 	</body>		
